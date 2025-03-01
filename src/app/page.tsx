@@ -1,95 +1,66 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
+import Link from 'next/link';
+
 export default function Home() {
+  const curriculum = [
+    {
+      week: 1,
+      title: "Next.js の基礎",
+      path: "/week1"
+    },
+    {
+      week: 2,
+      title: "データフェッチング",
+      path: "/week2"
+    },
+    {
+      week: 3,
+      title: "スタイリングとレイアウト",
+      path: "/week3"
+    },
+    {
+      week: 4,
+      title: "認証と状態管理",
+      path: "/week4"
+    },
+    {
+      week: 5,
+      title: "デプロイメントと最適化",
+      path: "/week5"
+    }
+  ];
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '2rem' }}>
+          Next.js カリキュラム
+        </h1>
+        
+        <div style={{ width: '100%', maxWidth: '800px' }}>
+          {curriculum.map((week) => (
+            <div key={week.week} style={{ 
+              marginBottom: '1rem', 
+              border: '1px solid #eaeaea', 
+              borderRadius: '8px', 
+              padding: '1.5rem',
+              transition: 'all 0.2s ease',
+              cursor: 'pointer',
+              ':hover': {
+                backgroundColor: '#f7f7f7'
+              }
+            }}>
+              <Link href={week.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <h2 style={{ fontSize: '1.5rem' }}>
+                  Week {week.week}: {week.title}
+                </h2>
+              </Link>
+            </div>
+          ))}
         </div>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
